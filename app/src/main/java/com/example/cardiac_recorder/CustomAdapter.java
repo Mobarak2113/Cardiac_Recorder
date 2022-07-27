@@ -1,10 +1,13 @@
 package com.example.cardiac_recorder;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -16,10 +19,12 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
     @NonNull
 
     private Context context;
+    Activity activity;
     private ArrayList data_id1,date,time,systolic,diastolic,pulse,comments;
 
 
-    CustomAdapter(Context context1, ArrayList data_id2,ArrayList systolic1, ArrayList diastolic1, ArrayList pulse1, ArrayList date1, ArrayList time1, ArrayList comment1) {
+    CustomAdapter(Activity activity,Context context1, ArrayList data_id2,ArrayList systolic1, ArrayList diastolic1, ArrayList pulse1, ArrayList date1, ArrayList time1, ArrayList comment1) {
+        this.activity= activity;
         this.context = context1;
         this.data_id1 = data_id2;
         this.systolic = systolic1;
@@ -46,6 +51,21 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         holder.date1.setText(String.valueOf(date.get(position)));
         holder.time1.setText(String.valueOf(time.get(position)));
         holder.comment1.setText(String.valueOf(comments.get(position)));
+        holder.mainLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context,UpdateAndDeleteActivaty.class);
+                intent.putExtra("dataid", String.valueOf(data_id1.get(position)));
+                intent.putExtra("systolic", String.valueOf(systolic.get(position)));
+                intent.putExtra("diastolic", String.valueOf(diastolic.get(position)));
+                intent.putExtra("pulse", String.valueOf(pulse.get(position)));
+                intent.putExtra("date", String.valueOf(date.get(position)));
+                intent.putExtra("time", String.valueOf(time.get(position)));
+                intent.putExtra("comment", String.valueOf(comments.get(position)));
+
+                activity.startActivityForResult(intent, 1);
+            }
+        });
 
     }
 
@@ -56,7 +76,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         TextView data_id, systolic1, diastolic1, pulse1, date1,time1, comment1;
-
+        LinearLayout mainLayout;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             data_id = itemView.findViewById(R.id.data_id);
@@ -66,6 +86,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
             diastolic1 = itemView.findViewById(R.id.diastolic1);
             pulse1 = itemView.findViewById(R.id.pulse1);
             comment1 = itemView.findViewById(R.id.comment1);
+            mainLayout=itemView.findViewById(R.id.mainLayout);
 
         }
     }

@@ -14,9 +14,13 @@
         android:theme="@style/Theme.Cardiac_Recorder"
         tools:targetApi="31">
         <activity
+            android:name=".UpdateAndDeleteActivaty"
+            android:exported="false"
+            android:parentActivityName=".MainActivity"/>
+        <activity
             android:name=".AddActivaty"
             android:label="Add Cardiac Record"
-            android:parentActivityName=".MainActivity"/>
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddActivaty">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".AddActivaty"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="129dp">
+
+        <EditText
+            android:id="@+id/time3"
+            android:layout_width="163dp"
+            android:layout_height="49dp"
+            android:ems="10"
+            android:hint="Time"
+            android:inputType="textPersonName"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.891"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.12" />
+
+        <EditText
+            android:id="@+id/date3"
+            android:layout_width="163dp"
+            android:layout_height="49dp"
+            android:ems="10"
+            android:hint="Date"
+            android:inputType="textPersonName"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.112"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.12" />
+
+        <EditText
+            android:id="@+id/comment3"
+            android:layout_width="354dp"
+            android:layout_height="101dp"
+            android:ems="10"
+            android:hint="Comment"
+            android:inputType="textPersonName"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.526"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.668" />
+
+        <EditText
+            android:id="@+id/pulse3"
+            android:layout_width="355dp"
+            android:layout_height="50dp"
+            android:layout_marginBottom="72dp"
+            android:ems="10"
+            android:hint="Pulse"
+            android:inputType="numberSigned"
+            app:layout_constraintBottom_toTopOf="@+id/comment3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="MissingConstraints" />
+
+        <Button
+            android:id="@+id/update_Button3"
+            android:layout_width="106dp"
+            android:layout_height="64dp"
+            android:layout_marginEnd="268dp"
+            android:layout_marginBottom="76dp"
+            android:text="Update"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <Button
+            android:id="@+id/delete_Button"
+            android:layout_width="109dp"
+            android:layout_height="69dp"
+            android:layout_marginEnd="84dp"
+            android:text="Delete"
+            app:layout_constraintBottom_toBottomOf="@+id/update_Button3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/update_Button3" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <EditText
+        android:id="@+id/systolic3"
+        android:layout_width="355dp"
+        android:layout_height="50dp"
+        android:ems="10"
+        android:inputType="numberSigned"
+        android:hint="Systolic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.241" />
+
+    <EditText
+        android:id="@+id/diastolic3"
+        android:layout_width="355dp"
+        android:layout_height="50dp"
+        android:ems="10"
+        android:inputType="numberSigned"
+        android:hint="Diastolic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.361" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

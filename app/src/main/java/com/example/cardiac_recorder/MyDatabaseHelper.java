@@ -107,13 +107,33 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         ContentValues contentValues = new ContentValues();
 
         contentValues.put(COLUMN_SYSTOLIC,systol);
-        contentValues.put(COLUMN_DIASTOLIC,diastol);
+        contentValues.put(COLUMN_DIASTOLIC, diastol);
         contentValues.put(COLUMN_PULSE,pulse);
-        contentValues.put(COLUMN_DATE,"Date: "+date_value);
-        contentValues.put(COLUMN_TIME,"Time: "+time_value);
-        contentValues.put(COLUMN_COMMENTS,"Comments: "+comments);
+        contentValues.put(COLUMN_DATE,date_value);
+        contentValues.put(COLUMN_TIME,time_value);
+        contentValues.put(COLUMN_COMMENTS,comments);
         long id= sqLiteDatabase.insert(TABLE_NAME,null,contentValues);
         return id;
+    }
+
+    /**
+     * check on a particular id if data exists or not
+     * on sqlite database
+     * @param id where to check for data on sqlite database
+     * @return
+     * true if data exists or false or no existence of data on
+     * that id
+     */
+    public boolean checkIfDataExists(Long id) {
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        String Query = "Select * from " + TABLE_NAME + " where " + COLUMN_ID + " = " + Long.toString(id);
+        Cursor cursor = sqLiteDatabase.rawQuery(Query, null);
+        if(cursor.getCount() <= 0){
+            cursor.close();
+            return false;
+        }
+        cursor.close();
+        return true;
     }
 
     Cursor readAllData(){
@@ -126,6 +146,91 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
             cursor = db.rawQuery(query,null);
         }
         return cursor;
+    }
+
+    void UpdateData(String row_id,String systol, String diastol, String pulse,String date_value, String time_value, String comments){
+        SQLiteDatabase db =  this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COLUMN_SYSTOLIC,systol);
+        contentValues.put(COLUMN_DIASTOLIC,diastol);
+        contentValues.put(COLUMN_PULSE,pulse);
+        contentValues.put(COLUMN_DATE,date_value);
+        contentValues.put(COLUMN_TIME,time_value);
+        contentValues.put(COLUMN_COMMENTS,comments);
+        long result = db.update(TABLE_NAME,contentValues, "_id=?", new String[]{row_id});
+        if(result==-1)
+        {
+            Toast.makeText(context,"Failed To Updated",Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(context,"SuccessfullY Updated",Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    void delete(String row_id){
+        SQLiteDatabase db =  this.getWritableDatabase();
+        long result = db.delete(TABLE_NAME, "_id=?", new String[]{row_id});
+
+        if(result==-1)
+        {
+            Toast.makeText(context,"Failed To Delete",Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(context,"SuccessfullY Deleted",Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    void deleteall(){
+        SQLiteDatabase db =  this.getWritableDatabase();
+        db.execSQL("Delete from " +TABLE_NAME);
+
+    }
+
+
+    /**
+     * compare if record on that id on database is equal
+     * or not to the parameterized record
+     * @param id
+     * id for each record
+     * @param sys
+     * systolic data
+     * @param dias
+     * disatolic data
+     * @param pressure_status
+     * blood_pressure_status will be showed
+     * @param pulse pulse of user
+     * @param pulse_status pulse_status of user
+     * @param date on which data record is inserted
+     * @param time on which time record is inserted
+     * @param comments comment on each record
+     * @return
+     * true if record on that id on database is equal,
+     * false if not equal
+     */
+    public boolean checkDataBaseContent(String id, String sys, String dias, String pulse,String date, String time, String comments) {
+        SQLiteDatabase sqLiteDatabase =  this.getWritableDatabase();
+        String[] columns = {MyDatabaseHelper.COLUMN_SYSTOLIC, MyDatabaseHelper.COLUMN_DIASTOLIC, MyDatabaseHelper.COLUMN_PULSE,MyDatabaseHelper.COLUMN_DATE, MyDatabaseHelper.COLUMN_TIME, MyDatabaseHelper.COLUMN_COMMENTS};
+        Cursor cursor = sqLiteDatabase.query(MyDatabaseHelper.TABLE_NAME, columns, MyDatabaseHelper.COLUMN_ID+" = '"+id+"'", null, null, null, null);
+        while (cursor.moveToNext()) {
+            int index1 = cursor.getColumnIndex(MyDatabaseHelper.COLUMN_SYSTOLIC);
+            int index2 = cursor.getColumnIndex(MyDatabaseHelper.COLUMN_DIASTOLIC);
+            int index3 = cursor.getColumnIndex(MyDatabaseHelper.COLUMN_PULSE);
+            int index4 = cursor.getColumnIndex(MyDatabaseHelper.COLUMN_DATE);
+            int index5 = cursor.getColumnIndex(MyDatabaseHelper.COLUMN_TIME);
+            int index6 = cursor.getColumnIndex(MyDatabaseHelper.COLUMN_COMMENTS);
+
+            String sys1 = cursor.getString(index1);
+            String dia1 = cursor.getString(index2);
+            String pulse1 = cursor.getString(index3);
+            String date1 = cursor.getString(index4);
+            String time1 = cursor.getString(index5);
+            String comm1 = cursor.getString(index6);
+
+            if (sys != sys1 || dias != dia1 || pulse != pulse1 ||  date != date1 || time != time1 || comments != comm1) {
+                cursor.close();
+                return false;
+            }
+        }
+        cursor.close();
+        return true;
     }
 
 
