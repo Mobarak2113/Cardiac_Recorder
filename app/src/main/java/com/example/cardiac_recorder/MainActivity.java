@@ -72,9 +72,12 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
     /**
      * this method  is for refreashing main activity after adding ,update or delete
      */
+
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -83,9 +86,11 @@ public class MainActivity extends AppCompatActivity {
             recreate();
         }
     }
+
     /**
      * this method  will fetch data from sqlite database and strore in recylerview using custom adaptor
      */
+
     void storeData(){
         Cursor cursor = myDB.readAllData();
         if(cursor.getCount() == 0){
@@ -102,9 +107,11 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
     /**
      * this method  for showing menu bar
      */
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -120,9 +127,11 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
     /**
      * this method  is for confirming before all delete data
      */
+
     void confirmDialog(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Delete All ?");

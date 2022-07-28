@@ -35,7 +35,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
      * @param time1 on which time record is inserted
      * @param comment1 comment on each record
      */
-
     CustomAdapter(Activity activity,Context context1, ArrayList data_id2,ArrayList systolic1, ArrayList diastolic1, ArrayList pulse1, ArrayList date1, ArrayList time1, ArrayList comment1) {
         this.activity= activity;
         this.context = context1;
