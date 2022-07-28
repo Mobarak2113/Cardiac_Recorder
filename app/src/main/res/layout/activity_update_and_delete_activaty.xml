@@ -59,7 +59,11 @@
             android:id="@+id/pulse3"
             android:layout_width="355dp"
             android:layout_height="50dp"
+
+            android:layout_marginBottom="28dp"
+
             android:layout_marginBottom="72dp"
+
             android:ems="10"
             android:hint="Pulse"
             android:inputType="numberSigned"

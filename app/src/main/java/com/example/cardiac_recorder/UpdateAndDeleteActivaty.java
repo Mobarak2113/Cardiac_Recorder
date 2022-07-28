@@ -22,6 +22,13 @@ public class UpdateAndDeleteActivaty extends AppCompatActivity {
     Button update_button,delete_button;
     String Dataid,Systolic,Diastolic,Pulse,Date,Time,Comment;
 
+    /**
+     * activity is created and this method execute data
+     * update and delete in database using MyDatabaseHelper Class;
+     * @param savedInstanceState
+     * As for activity onCreate takes a Bundle parameter
+     */
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +48,11 @@ public class UpdateAndDeleteActivaty extends AppCompatActivity {
             ab.setTitle("Back");
         }
 
+        /**
+         * this method will update the data
+         * in database using MyDatabaseHelper Class;
+         */
+
         update_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -58,6 +70,11 @@ public class UpdateAndDeleteActivaty extends AppCompatActivity {
 
         });
 
+        /**
+         * this method will delete the data
+         * in database using MyDatabaseHelper Class;
+         */
+
         delete_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -66,6 +83,11 @@ public class UpdateAndDeleteActivaty extends AppCompatActivity {
         });
 
     }
+
+    /**
+     * this method will gett data from main activity recyclerview item
+     * and this data will be show in updateanddelete activaty page input formate for further update or deletion
+     */
 
     void getandsetIntentData(){
         if(getIntent().hasExtra("dataid") && getIntent().hasExtra("systolic") && getIntent().hasExtra("diastolic") &&
@@ -90,6 +112,12 @@ public class UpdateAndDeleteActivaty extends AppCompatActivity {
             Toast.makeText(this, "No Data", Toast.LENGTH_SHORT).show();
         }
     }
+
+    /**
+     * this confirmdialog method will show before deletion for confirmation
+     */
+
+
 
     void confirmDialog(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
