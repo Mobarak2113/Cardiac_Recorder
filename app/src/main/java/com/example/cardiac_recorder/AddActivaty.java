@@ -51,18 +51,6 @@ public class AddActivaty extends AppCompatActivity {
         myDatabaseHelper = new MyDatabaseHelper(AddActivaty.this);
         SQLiteDatabase sqLiteDatabase = myDatabaseHelper.getWritableDatabase();
 
-        Calendar calendar = Calendar.getInstance();
-
-        Date currentDate = calendar.getTime();
-        String date_value = DateFormat.getDateInstance(DateFormat.FULL).format(currentDate);
-        dateInput.setText(date_value);
-
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("hh:mm a");
-        String time_value = simpleDateFormat.format(calendar.getTime());
-        timeInput.setText(time_value);
-
-
-
 
         add_button.setOnClickListener(new View.OnClickListener() {
                 /**
@@ -74,7 +62,8 @@ public class AddActivaty extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
 
-
+                    String date = dateInput.getText().toString();
+                    String time = timeInput.getText().toString();
                     String systol = systolicInput.getText().toString();
                     String diastol = diastolicInput.getText().toString();
                     String pulse = pulseInput.getText().toString();
@@ -100,7 +89,7 @@ public class AddActivaty extends AppCompatActivity {
                         return;
                     }
 
-                    long id = myDatabaseHelper.insertData(systol, diastol, pulse, date_value, time_value, comments);
+                    long id = myDatabaseHelper.insertData(systol, diastol, pulse, date, time, comments);
 
                     if (id == -1) {
                         Toast.makeText(AddActivaty.this, "Failled", Toast.LENGTH_SHORT).show();
