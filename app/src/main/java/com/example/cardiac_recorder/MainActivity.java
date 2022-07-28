@@ -22,6 +22,13 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
+
+/**
+ * this is MainActivity class of CardiacRecorder application
+ * Recycle view and input data will be show in this
+ * MainActivity class
+ */
+
 public class MainActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     FloatingActionButton add_button1;
@@ -30,7 +37,11 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<String> data_id,date,time,systolic,diastolic,pulse,comment;
     CustomAdapter customAdapter;
 
-
+    /**
+     * this method  will show measurement data in recyle view and navigate to add activati if add button is clickec
+     * @param savedInstanceState
+     * takes a Bundle type parameter
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +72,9 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * this method  is for refreashing main activity after adding ,update or delete
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -69,7 +83,9 @@ public class MainActivity extends AppCompatActivity {
             recreate();
         }
     }
-
+    /**
+     * this method  will fetch data from sqlite database and strore in recylerview using custom adaptor
+     */
     void storeData(){
         Cursor cursor = myDB.readAllData();
         if(cursor.getCount() == 0){
@@ -86,7 +102,9 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
-
+    /**
+     * this method  for showing menu bar
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -102,7 +120,9 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
+    /**
+     * this method  is for confirming before all delete data
+     */
     void confirmDialog(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Delete All ?");

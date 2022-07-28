@@ -21,7 +21,20 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
     private Context context;
     Activity activity;
     private ArrayList data_id1,date,time,systolic,diastolic,pulse,comments;
-
+   /**
+    * constructor of custom adapter
+     * @param activity
+     * @param context1
+    * @param data_id2
+    * @param systolic1
+     * systolic data
+     * @param diastolic1
+     * disatolic data
+     * @param pulse1 pulse of user
+     * @param date1 on which data record is inserted
+     * @param time1 on which time record is inserted
+     * @param comment1 comment on each record
+     */
 
     CustomAdapter(Activity activity,Context context1, ArrayList data_id2,ArrayList systolic1, ArrayList diastolic1, ArrayList pulse1, ArrayList date1, ArrayList time1, ArrayList comment1) {
         this.activity= activity;

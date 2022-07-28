@@ -92,7 +92,6 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
      * systolic data
      * @param diastol
      * disatolic data
-     * blood_pressure_status will be showed
      * @param pulse pulse of user
      * @param date_value on which data record is inserted
      * @param time_value on which time record is inserted
@@ -135,7 +134,13 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         cursor.close();
         return true;
     }
-
+    /**
+     * read all data
+     * on sqlite database
+     * true if data exists or false or no existence of data on
+     * that id
+     * @return cursor
+     */
     Cursor readAllData(){
         String query = "SELECT * FROM "  +TABLE_NAME;
         SQLiteDatabase db =  this.getReadableDatabase();
@@ -148,6 +153,17 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
+    /**
+     * Update record into sqlite database
+     * @param systol
+     * systolic data
+     * @param diastol
+     * disatolic data
+     * @param pulse pulse of user
+     * @param date_value on which data record is inserted
+     * @param time_value on which time record is inserted
+     * @param comments comment on each record
+     */
     void UpdateData(String row_id,String systol, String diastol, String pulse,String date_value, String time_value, String comments){
         SQLiteDatabase db =  this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -166,6 +182,11 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
+
+    /**
+     * @param row_id Primary key of cardiac record table.
+     * Will delete the tuple if condition meet
+     */
     void delete(String row_id){
         SQLiteDatabase db =  this.getWritableDatabase();
         long result = db.delete(TABLE_NAME, "_id=?", new String[]{row_id});
@@ -177,7 +198,9 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
             Toast.makeText(context,"SuccessfullY Deleted",Toast.LENGTH_SHORT).show();
         }
     }
-
+    /**
+     * Will delete all tuple
+     */
     void deleteall(){
         SQLiteDatabase db =  this.getWritableDatabase();
         db.execSQL("Delete from " +TABLE_NAME);
@@ -194,10 +217,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
      * systolic data
      * @param dias
      * disatolic data
-     * @param pressure_status
-     * blood_pressure_status will be showed
      * @param pulse pulse of user
-     * @param pulse_status pulse_status of user
      * @param date on which data record is inserted
      * @param time on which time record is inserted
      * @param comments comment on each record
